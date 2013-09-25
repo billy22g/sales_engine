@@ -21,30 +21,29 @@ class InvoiceTest < MiniTest::Test
   end
 
   def invoice
-    #what does pipes mean??
     @invoice ||= Invoice.new(invoice_attributes)
   end
 
   def test_it_gets_item_id
-    assert_equal invoice_attributes[:id], invoice.invoice_id
+    assert_equal invoice_attributes[:id], invoice.id
   end
 
   def test_it_gets_customer_id
-    assert_equal invoice_attributes[:customer_id], invoice.invoice_customer_id
+    assert_equal invoice_attributes[:customer_id], invoice.customer_id
   end
 
   def test_it_gets_unit_price
-    assert_equal invoice_attributes[:status], invoice.invoice_status
+    assert_equal invoice_attributes[:status], invoice.status
   end
 
   def test_it_gets_merchant_id
-    assert_equal invoice_attributes[:merchant_id], invoice.invoice_merchant_id
+    assert_equal invoice_attributes[:merchant_id], invoice.merchant_id
   end
 
   def test_it_gets_created_at
-    assert_equal invoice_attributes[:created_at], invoice.invoice_created_at
+    assert_equal invoice_attributes[:created_at], invoice.created_at
   end
   def test_it_gets_updated_at
-    assert_equal invoice_attributes[:updated_at], invoice.invoice_updated_at
+    assert_equal invoice_attributes[:updated_at], invoice.updated_at
   end
 end

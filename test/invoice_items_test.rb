@@ -13,7 +13,7 @@ class InvoiceItemsTest < MiniTest::Test
 
   def item_attributes
     contents.each do |row|
-      invoice_item_id = row[:id]
+      id              = row[:id]
       item_id         = row[:item_id]
       invoice_id      = row[:invoice_id]
       quantity        = row[:quantity]
@@ -28,7 +28,7 @@ class InvoiceItemsTest < MiniTest::Test
   end
 
   def test_invoice_items_id
-    assert_equal item_attributes[:id], invoice_items.invoice_item_id
+    assert_equal item_attributes[:id], invoice_items.id
   end
 
   def test_item_id

@@ -22,34 +22,33 @@ class ItemsTest < MiniTest::Test
   end
 
   def item
-    #what does pipes mean??
     @item ||= Item.new(item_attributes)
   end
 
   def test_it_gets_item_id
-    assert_equal item_attributes[:id], item.item_id
+    assert_equal item_attributes[:id], item.id
   end
 
   def test_it_gets_name
-    assert_equal item_attributes[:name], item.item_name
+    assert_equal item_attributes[:name], item.name
   end
 
   def test_it_gets_description
-    assert_equal item_attributes[:description], item.item_description
+    assert_equal item_attributes[:description], item.description
   end
 
   def test_it_gets_unit_price
-    assert_equal item_attributes[:unit_price], item.item_unit_price
+    assert_equal item_attributes[:unit_price], item.unit_price
   end
 
   def test_it_gets_merchant_id
-    assert_equal item_attributes[:merchant_id], item.item_merchant_id
+    assert_equal item_attributes[:merchant_id], item.merchant_id
   end
 
   def test_it_gets_created_at
-    assert_equal item_attributes[:created_at], item.item_created_at
+    assert_equal item_attributes[:created_at], item.created_at
   end
   def test_it_gets_updated_at
-    assert_equal item_attributes[:updated_at], item.item_updated_at
+    assert_equal item_attributes[:updated_at], item.updated_at
   end
 end

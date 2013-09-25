@@ -14,7 +14,7 @@ class CustomerTest < MiniTest::Test
   def customer_attributes
     
     contents.each do |row|
-      customer_id = row[:id]
+      id = row[:id]
       first_name  = row[:first_name]
       last_name   = row[:last_name]
       created_at  = row[:created_at]
@@ -26,7 +26,7 @@ class CustomerTest < MiniTest::Test
     @customer = Customer.new(customer_attributes)
   end
   def test_customer_id
-    assert_equal customer_attributes[:id], customer.customer_id
+    assert_equal customer_attributes[:id], customer.id
   end
   def test_customer_first_name
     assert_equal customer_attributes[:first_name], customer.first_name
@@ -38,6 +38,6 @@ class CustomerTest < MiniTest::Test
     assert_equal customer_attributes[:created_at], customer.created_at
   end
   def test_updated_at
-    assert_equal customer_attributes[:created_at], customer.updated_at
+    assert_equal customer_attributes[:updated_at], customer.updated_at
   end
 end
