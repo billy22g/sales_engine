@@ -41,49 +41,4 @@ class MerchantRepoTest < Minitest::Test
     assert results.uniq.count > 1
   end
 
-
-
-
-
-
-  # def test_that_file_finds_expected_data_pieces
-  #   filename = "./data/merchants.csv"
-  #   mr = MerchantRepo.new(filename)
-  #   merchant5 = mr.merchant_list[4]
-  #   assert_equal "Williamson Group", mr.merchant5[:name]
-  # end
-
-  # def test_find_merchant_id
-  #   mr = MerchantRepo.new("./data/merchants.csv")
-  #   merchant_id = "1"
-  #   mr.find_merchant_id(merchant_id)
-  #   merchant = mr.search_results[0]
-  #   assert_equal "1", merchant.merchant_id
-  # end
-
-  # def test_find_merchant_name
-  #   mr = MerchantRepo.new("./data/merchants.csv")
-  #   merchant_name = "Williamson Group"
-  #   mr.find_merchant_name(merchant_name)
-  #   merchant = mr.search_results[0]
-  #   assert_equal "Williamson Group", merchant.merchant_name
-  # end
-
-  # def test_find_create_date
-  #   mr = MerchantRepo.new("./data/merchants.csv")
-  #   create_date = "2012-03-27 14:53:59 UTC"
-  #   mr.find_create_date(create_date)
-  #   merchant = mr.search_results[0]
-  #   assert_equal "2012-03-27 14:53:59 UTC", merchant.merchant_created_at
-
-  # end
-
-  # def test_find_update_date
-  #   skip
-  #   mr = MerchantRepo.new("./data/merchants.csv")
-  #   update_date = "2012-03-27 14:53:59 UTC"
-
-  # end
-
-
 end
