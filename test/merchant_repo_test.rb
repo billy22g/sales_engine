@@ -6,8 +6,8 @@ require "csv"
 
 class MerchantRepoTest < Minitest::Test 
 
-  def setup
-    @mr = MerchantRepo.new("./data/merchants.csv")
+  def repo
+    @mr ||= MerchantRepo.new("./data/merchants.csv")
   end
 
   def test_it_receives_filename_that_will_be_loaded_by_default
@@ -16,32 +16,29 @@ class MerchantRepoTest < Minitest::Test
 
   def test_it_reads_file
     loaded_data = CSV.read "./data/merchants.csv", headers: true, header_converters: :symbol
-    assert_equal loaded_data, @mr.read_file
+    assert_equal loaded_data, repo.read_file
   end
 
   def test_that_merchant_objects_method_actually_creates_new_merchant_objects
-    merchant = @mr.merchant_objects
+    merchant = repo.merchant_objects
     assert_equal "5", merchant.last.merchant_id
     assert_equal "Williamson Group", merchant.last.merchant_name
   end
 
   def test_that_it_finds_one_merchant_by_attribute
-    merchant = @mr.find_by(:merchant_name, "Williamson Group")
+    merchant = repo.find_by(:merchant_name, "Williamson Group")
     assert_equal "5", merchant.merchant_id
   end
 
   def test_that_it_finds_all_merchants_by_attribute
-    merchant = @mr.find_all_by(:merchant_created_at, "2012-03-27 14:53:59 UTC")
+    merchant = repo.find_all_by(:merchant_created_at, "2012-03-27 14:53:59 UTC")
     assert_equal 5, merchant.length
   end
 
   def test_that_random_method_returns_a_random_merchant
-    10.times do
-      merchant1 = @mr.random
-      merchant2 = @mr.random
-      break if merchant1.merchant_id != merchant2.merchant_id
-      refute_equal merchant1.merchant_id, merchant2.merchant_id
-    end
+    results = []
+    10.times{ results << repo.random }
+    assert results.uniq.count > 1
   end
 
 

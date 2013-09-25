@@ -1,15 +1,15 @@
 class Merchant
 
-attr_reader :merchant_id, 
-            :merchant_name, 
-            :merchant_created_at, 
-            :merchant_updated_at
+attr_reader :id, 
+            :name, 
+            :created_at, 
+            :updated_at
 
   def initialize (attribute = {})
-    @merchant_id = attribute[:id]
-    @merchant_name = attribute[:name]
-    @merchant_created_at = attribute[:created_at]
-    @merchant_updated_at = attribute[:updated_at]
+    @id = attribute[:id]
+    @name = attribute[:name]
+    @created_at = attribute[:created_at]
+    @updated_at = attribute[:updated_at]
   end
 
 end

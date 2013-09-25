@@ -35,36 +35,52 @@ class MerchantRepo
     @merchant_list
   end
 
+  def random
+    @merchant_list.sample
+  end
+
   def find_by(attribute, input)
-    merchant_objects.find do |merchant|
-      if attribute == :merchant_name && merchant.merchant_name.downcase == input.downcase
-        merchant
-      elsif attribute == :merchant_id && merchant.merchant_id.downcase == input.downcase
-        merchant
-      elsif attribute == :merchant_created_at && merchant.merchant_created_at.downcase == input.downcase
-        merchant 
-      elsif attribute == :merchant_updated_at && merchant.merchant_updated_at.downcase == input.downcase
-        merchant
-      end
+    merchant_objects.find do |m|
+      m.send(attribute).downcase == input.downcase
     end
+  end
+
+  def find_by_name(input)
+    find_by(:name, input)
+  end
+
+  def find_by_id(input)
+    find_by(:id, input)
+  end
+
+  def find_by_created_at(input)
+    find_by(:created_at, input)
+  end
+
+  def find_by_updated_at(input)
+    find_by(:updated_at, input)
   end
 
   def find_all_by(attribute, input)
     merchant_objects.select do |merchant|
-      if attribute == :merchant_name && merchant.merchant_name.downcase == input.downcase
-        merchant
-      elsif attribute == :merchant_id && merchant.merchant_id.downcase == input.downcase
-        merchant
-      elsif attribute == :merchant_created_at && merchant.merchant_created_at.downcase == input.downcase
-        merchant 
-      elsif attribute == :merchant_updated_at && merchant.merchant_created_at.downcase == input.downcase
-        merchant
-      end      
+      merchant.send(attribute).downcase == input.downcase
     end
   end
 
-  def random
-    @merchant_list.sample
+  def find_all_by_name(input)
+      find_all_by(:name, input)
+  end
+
+  def find_all_by_id(input)
+    find_all_by(:id, input)
+  end
+
+  def find_all_by_created_at(input)
+    find_all_by(:created_at, input)
+  end
+  
+  def find_all_by_updated_at(input)
+    find_all_by(:updated_at, input)
   end
 
 end

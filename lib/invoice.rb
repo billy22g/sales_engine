@@ -1,15 +1,20 @@
 require "csv"
 class Invoice
-  attr_reader :invoice_id, :invoice_customer_id, :invoice_merchant_id,
-              :invoice_status, :invoice_merchant_id,                
-              :invoice_created_at, :invoice_updated_at                              
+  attr_reader :id, 
+              :customer_id, 
+              :merchant_id,
+              :status, 
+              :merchant_id,                
+              :created_at, 
+              :updated_at 
+
   def initialize(attribute)
-    @invoice_id          = attribute[:id]                                    
-    @invoice_customer_id = attribute[:customer_id]                            
-    @invoice_merchant_id = attribute[:merchant_id] 
-    @invoice_status      = attribute[:status]                                   
-    @invoice_created_at  = attribute[:created_at]    
-    @invoice_updated_at  = attribute[:updated_at]    
+    @id                  = attribute[:id]                                    
+    @customer_id         = attribute[:customer_id]                            
+    @merchant_id         = attribute[:merchant_id] 
+    @status              = attribute[:status]                                   
+    @created_at          = attribute[:created_at]    
+    @updated_at          = attribute[:updated_at]    
   end
 
 end

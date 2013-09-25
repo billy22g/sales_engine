@@ -1,6 +1,6 @@
 class InvoiceItems
 
-  attr_reader :invoice_item_id,
+  attr_reader :id,
               :item_id, 
               :invoice_id, 
               :quantity, 
@@ -9,7 +9,7 @@ class InvoiceItems
               :updated_at
 
   def initialize(item_attributes)
-    @invoice_item_id = item_attributes[:id]
+    @id              = item_attributes[:id]
     @item_id         = item_attributes[:item_id]
     @invoice_id      = item_attributes[:invoice_id]
     @quantity        = item_attributes[:quantity]
