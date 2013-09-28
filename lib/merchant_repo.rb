@@ -3,11 +3,14 @@ require "./lib/merchant"
 require "pry"
 
 class MerchantRepo
+
+  attr_reader :engine
   
   def initialize(filename = "./data/merchants.csv")
     @merchant_list = []
     @filename = filename
     merchant_objects
+    @engine = engine
   end
 
   def read_file

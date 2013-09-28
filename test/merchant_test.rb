@@ -2,6 +2,7 @@ gem "minitest"
 require "minitest/autorun"
 require "minitest/pride"
 require "./lib/merchant"
+require "./lib/sales_engine"
 require "csv"
 
 class MerchantTest < Minitest::Test
@@ -38,6 +39,12 @@ class MerchantTest < Minitest::Test
 
   def test_merchant_updated_at
     assert_equal merchant_attributes[:updated_at], merchant.updated_at
+  end
+
+  def test_that_a_merchant_can_find_its_items
+    engine = SalesEngine.new
+    items = engine.item_repository.find_all_by_merchant_id("1")
+    assert_equal 5, items.count
   end
 
 end
