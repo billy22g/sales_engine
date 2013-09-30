@@ -1,3 +1,7 @@
+require "sales_engine"
+require "merchant_repo"
+require "csv"
+
 class Merchant
 
 attr_reader :id, 

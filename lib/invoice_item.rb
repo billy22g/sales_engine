@@ -1,3 +1,7 @@
+require "sales_engine"
+require "invoice_item_repo"
+require "csv"
+
 class InvoiceItem
 
   attr_reader :id,
@@ -8,14 +12,22 @@ class InvoiceItem
               :created_at, 
               :updated_at
 
-  def initialize(item_attributes)
-    @id              = item_attributes[:id]
-    @item_id         = item_attributes[:item_id]
-    @invoice_id      = item_attributes[:invoice_id]
-    @quantity        = item_attributes[:quantity]
-    @unit_price      = item_attributes[:unit_price]
-    @created_at      = item_attributes[:created_at]
-    @updated_at      = item_attributes[:updated_at]
+  def initialize(attribute = {})
+    @id              = attribute[:id]
+    @item_id         = attribute[:item_id]
+    @invoice_id      = attribute[:invoice_id]
+    @quantity        = attribute[:quantity]
+    @unit_price      = attribute[:unit_price]
+    @created_at      = attribute[:created_at]
+    @updated_at      = attribute[:updated_at]
+  end
+
+  def invoice
+    invoice = Invoice.new
+  end
+
+  def item
+    item = Item.new
   end
 
 end

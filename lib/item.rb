@@ -1,4 +1,5 @@
 require "csv"
+
 class Item
   attr_reader :id, 
               :name, 
@@ -8,7 +9,7 @@ class Item
               :created_at, 
               :updated_at   
 
-  def initialize(attribute)
+  def initialize(attribute = {})
     @id          = attribute[:id]                                    
     @name        = attribute[:name]                            
     @description = attribute[:description]  

@@ -55,4 +55,16 @@ class InvoiceItemTest < MiniTest::Test
     assert_equal item_attributes[:updated_at], invoice_items.updated_at
   end
 
+  def test_that_invoice_method_returns_an_instance_of_Invoice
+    invoice_item = InvoiceItem.new
+    assert_kind_of Invoice, invoice_item.invoice
+  end
+
+  def test_that_item_method_returns_an_instance_of_Item
+    invoice_item = InvoiceItem.new
+    assert_kind_of Item, invoice_item.item
+  end
+
+
+
 end
