@@ -21,4 +21,12 @@ attr_reader :id,
     end
   end
 
+  def invoices
+    engine = SalesEngine.new
+    invoices = engine.invoice_repository
+    invoices.find_all do |invoice|
+      invoice.merchant_id == self.id
+    end
+  end
+
 end

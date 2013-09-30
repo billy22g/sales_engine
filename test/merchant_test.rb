@@ -47,5 +47,11 @@ class MerchantTest < Minitest::Test
     assert_equal 5, items.count
   end
 
+  def test_that_a_merchant_can_find_its_invoices
+    engine = SalesEngine.new
+    invoices = engine.invoice_repository.find_all_by_merchant_id("33")
+    assert_equal 1, invoices.count
+  end
+
 end
 
