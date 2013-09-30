@@ -36,13 +36,21 @@ class Invoice
   end
 
   def customer
-    customer = Customer.new
-
+    engine = SalesEngine.new
+    customers = engine.customer_repository.all
+    customers.find do |customer|
+      customer.id == self.customer_id
+      customer
+    end 
   end
 
   def merchant
-    merchant = Merchant.new
-
+    engine = SalesEngine.new
+    merchants = engine.merchant_repository.all
+    merchants.find do |merchant|
+      merchant.id == self.merchant_id
+      merchant
+    end
   end
 
 end
