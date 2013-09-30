@@ -1,4 +1,5 @@
 require "csv"
+
 class Invoice
   attr_reader :id, 
               :customer_id, 
@@ -14,6 +15,14 @@ class Invoice
     @status              = attribute[:status]                                   
     @created_at          = attribute[:created_at]    
     @updated_at          = attribute[:updated_at]    
+  end
+
+  def transactions
+    engine = SalesEngine.new
+    transactions = engine.transaction_repository.all
+    transactions.find_by_all do |transaction|
+      transaction.invoice_id == self.id
+    end
   end
 
 end

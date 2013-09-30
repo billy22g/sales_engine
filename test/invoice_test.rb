@@ -2,6 +2,7 @@ require "minitest"
 require "minitest/autorun"
 require "minitest/pride"
 require "./lib/invoice"
+require "./lib/sales_engine"
 require "csv"
 
 class InvoiceTest < MiniTest::Test
@@ -43,7 +44,15 @@ class InvoiceTest < MiniTest::Test
   def test_it_gets_created_at
     assert_equal invoice_attributes[:created_at], invoice.created_at
   end
+
   def test_it_gets_updated_at
     assert_equal invoice_attributes[:updated_at], invoice.updated_at
   end
+
+  def test_that_invoices_can_find_their_associated_transactions
+    engine = SalesEngine.new
+    transactions = engine.transaction_repository.find_all_by_invoice_id("6")
+    assert_equal 1, transactions.count
+  end
+
 end
