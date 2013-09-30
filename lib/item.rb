@@ -1,3 +1,5 @@
+require "sales_engine"
+require "item_repo"
 require "csv"
 
 class Item
@@ -17,6 +19,18 @@ class Item
     @merchant_id = attribute[:merchant_id]  
     @created_at  = attribute[:created_at]    
     @updated_at  = attribute[:updated_at]    
+  end
+
+  def invoice_items
+    engine = SalesEngine.new
+    invoice_items = engine.invoice_item_repository.all
+    invoice_items.find_by_all do |invoice_item|
+      invoice_item.item_id == self.id
+    end
+  end
+
+  def merchant
+    merchant = Merchant.new
   end
 
 end

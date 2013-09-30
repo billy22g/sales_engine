@@ -48,7 +48,20 @@ class ItemsTest < MiniTest::Test
   def test_it_gets_created_at
     assert_equal item_attributes[:created_at], item.created_at
   end
+
   def test_it_gets_updated_at
     assert_equal item_attributes[:updated_at], item.updated_at
   end
+
+  def test_invoice_items_method_returns_associated_invoice_items
+    engine = SalesEngine.new
+    invoice_items = engine.invoice_item_repository.find_all_by_quantity("7")
+    assert_equal 1, invoice_items.count
+  end
+
+  def test_merchant_method_returns_a_Merchant
+    item = Item.new
+    assert_kind_of Merchant, item.merchant
+  end
+
 end

@@ -32,7 +32,7 @@ class InvoiceItemRepoTest < Minitest::Test
 
   def test_that_it_finds_all_invoice_items_by_attribute
     invoice_item = repo.find_all_by_created_at("2012-03-27 14:54:09 UTC")
-    assert_equal 5, invoice_item.length
+    assert_equal 5, invoice_item.count
   end
 
   def test_that_random_method_returns_a_random_invoice_items
