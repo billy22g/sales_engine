@@ -23,11 +23,21 @@ class InvoiceItem
   end
 
   def invoice
-    invoice = Invoice.new
+    engine = SalesEngine.new
+    invoices = engine.invoice_repository.all
+    invoices.find do |invoice|
+      invoice.id == self.invoice_id
+      invoice
+    end
   end
 
   def item
-    item = Item.new
+    engine = SalesEngine.new
+    items = engine.item_repository.all
+    items.find do |item|
+      item.id == self.item_id
+      item
+    end
   end
 
 end
