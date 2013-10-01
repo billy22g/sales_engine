@@ -28,10 +28,10 @@ class Item
   end
 
   def merchant
-    merchants = engine.merchant_repository.all
+    merchants = @engine.merchant_repository.all
     merchants.find do |merchant|
       merchant.id == self.merchant_id
-      merchant
+      merchant 
     end
   end
 
