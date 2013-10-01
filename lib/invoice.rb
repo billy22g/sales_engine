@@ -25,11 +25,25 @@ class Invoice
     end
   end
 
-  def invoice_items
-    invoice_items = engine.invoice_item_repository.all
-    invoice_items.select do |invoice_item|
-      invoice_item.invoice_id == id
+  def successful?
+    transactions.result == "success" 
+  end
+
+  def successful_invoices
+    if successful? == true
+      si = [] << Invoice
     end
+  end
+
+  def total
+    totals = invoice_items.collect do |invoice_item|
+      invoice_item.total
+    end
+    totals.reduce(:+)
+  end
+
+  def invoice_items
+    engine.invoice_item_repository.find_all_by_invoice_id(id)
   end
 
   def items                      
@@ -39,17 +53,11 @@ class Invoice
   end
 
   def customer
-    customers = engine.customer_repository.all
-    customers.find do |customer|
-      customer.id == customer_id
-    end 
+    engine.customer_repository.find_by_id( customer_id )
   end
 
   def merchant
-    merchants = engine.merchant_repository.all
-    merchants.find do |merchant|
-      merchant.id == merchant_id
-    end
+    engine.merchant_repository.find_by_id( merchant_id)
   end
 
 end

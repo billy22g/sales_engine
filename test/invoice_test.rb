@@ -61,7 +61,8 @@ class InvoiceTest < MiniTest::Test
     assert_equal 26, invoice.merchant_id
   end
 
-
-
+  def test_for_total_of_an_invoice
+    assert_equal 563663, invoice.total
+  end
 
 end

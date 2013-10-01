@@ -32,7 +32,7 @@ class TransactionTest < MiniTest::Test
   end
 
   def test_result
-    assert_equal "success", transaction.result
+    assert_equal "failed", transaction.result
   end
 
   def test_created_at

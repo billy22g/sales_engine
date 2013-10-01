@@ -53,5 +53,9 @@ class InvoiceItemTest < MiniTest::Test
     assert_kind_of Item, invoice_item.item
     assert_equal 1, invoice_item.item_id
   end
+
+  def test_invoice_item_total_gives_a_total
+    assert_equal 68175, invoice_item.total
+  end
   
 end

@@ -35,4 +35,8 @@ class InvoiceItem
     end
   end
 
+  def total
+    quantity*unit_price
+  end
+
 end

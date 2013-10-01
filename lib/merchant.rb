@@ -30,4 +30,10 @@ attr_reader :id,
     end
   end
 
+  def revenue
+    invoices.collect do |invoice|
+      invoice.transactions
+    end
+  end
+
 end

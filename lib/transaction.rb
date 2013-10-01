@@ -27,5 +27,5 @@ attr_reader   :id,
       invoice.id == invoice_id
     end
   end
-
+  
 end
