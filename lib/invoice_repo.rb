@@ -35,7 +35,7 @@ class InvoiceRepo
   end
 
   def random
-    @invoice_list.sample
+    invoice_objects.sample
   end
 
   def find_by(attribute, input)

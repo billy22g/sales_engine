@@ -35,7 +35,7 @@ class CustomerRepo
   end
 
   def random
-    @customer_list.sample
+    customer_objects.sample
   end
 
   def find_by(attribute, input)

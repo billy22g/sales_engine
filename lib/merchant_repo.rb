@@ -38,7 +38,7 @@ class MerchantRepo
   end
 
   def random
-    @merchant_list.sample
+    merchant_objects.sample
   end
 
   def find_by(attribute, input)

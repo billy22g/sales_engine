@@ -35,7 +35,7 @@ class ItemRepo
   end
 
   def random
-    @item_list.sample
+    item_objects.sample
   end
 
   def find_by(attribute, input)

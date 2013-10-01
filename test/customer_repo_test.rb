@@ -2,12 +2,13 @@ gem "minitest"
 require "minitest/autorun"
 require "minitest/pride"
 require "./lib/customer_repo"
+require "./lib/sales_engine"
 require "csv"
 
 class CustomerRepoTest < Minitest::Test 
 
   def repo
-    @mr ||= CustomerRepo.new("./data/customers.csv")
+   CustomerRepo.new("./data/customers.csv")
   end
 
   def test_it_receives_filename_that_will_be_loaded_by_default

@@ -35,7 +35,7 @@ class TransactionRepo
   end
 
   def random
-    @transaction_list.sample
+    transaction_objects.sample
   end
 
   def find_by(attribute, input)
