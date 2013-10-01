@@ -4,10 +4,9 @@ require "pry"
 
 class ItemRepo
   
-  def initialize(filename = "./data/items.csv")
+  def initialize(filename = "./data/items.csv", engine = SalesEngine.new)
     @item_list = []
     @filename = filename
-    item_objects
   end
 
   def read_file
@@ -80,7 +79,7 @@ class ItemRepo
   end
 
   def find_all_by_name(input)
-      find_all_by(:name, input)
+    find_all_by(:name, input)
   end
 
   def find_all_by_id(input)

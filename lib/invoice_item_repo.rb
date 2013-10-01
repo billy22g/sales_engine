@@ -4,10 +4,9 @@ require "pry"
 
 class InvoiceItemRepo
   
-  def initialize(filename = "./data/invoice_items.csv")
+  def initialize(filename = "./data/invoice_items.csv", engine = SalesEngine.new)
     @invoice_items_list = []
     @filename = filename
-    invoice_items_objects
   end
 
   def read_file

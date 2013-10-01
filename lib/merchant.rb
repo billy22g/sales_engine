@@ -1,35 +1,32 @@
-require "sales_engine"
-require "merchant_repo"
-require "csv"
 
 class Merchant
 
 attr_reader :id, 
             :name, 
             :created_at, 
-            :updated_at
+            :updated_at,
+            :engine
             
 
-  def initialize (attribute = {})
+  def initialize(attribute = {}, engine = SalesEngine.new)
     @id = attribute[:id]
     @name = attribute[:name]
     @created_at = attribute[:created_at]
     @updated_at = attribute[:updated_at]
+    @engine = engine
   end
 
   def items
-    engine = SalesEngine.new
-    items = engine.item_repository
+    items = engine.item_repository.all
     items.find_all do |item|
-      item.merchant_id == self.id
+      item.merchant_id == id
     end
   end
 
   def invoices
-    engine = SalesEngine.new
-    invoices = engine.invoice_repository
+    invoices = engine.invoice_repository.all
     invoices.find_all do |invoice|
-      invoice.merchant_id == self.id
+      invoice.merchant_id == id
     end
   end
 

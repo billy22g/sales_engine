@@ -1,6 +1,3 @@
-require "csv"
-require "sales_engine"
-require "customer_repo"
 
 class Customer
   attr_reader :id,
@@ -8,13 +5,15 @@ class Customer
               :last_name,
               :created_at,
               :updated_at
+              :engine
 
-  def initialize(attribute = {})
+  def initialize(attribute = {}, engine = SalesEngine.new)
     @id          = attribute[:id]
     @first_name  = attribute[:first_name]
     @last_name   = attribute[:last_name]
     @created_at  = attribute[:created_at]
     @updated_at  = attribute[:updated_at]
+    @engine      = engine
   end
 
 end

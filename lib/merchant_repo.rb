@@ -6,10 +6,9 @@ class MerchantRepo
 
   attr_reader :engine
   
-  def initialize(filename = "./data/merchants.csv")
+  def initialize(filename = "./data/merchants.csv", engine = SalesEngine.new)
     @merchant_list = []
     @filename = filename
-    merchant_objects
     @engine = engine
   end
 
@@ -20,7 +19,7 @@ class MerchantRepo
   def merchant_objects
     if @merchant_list.empty?
       read_file.each do |row|
-        @merchant_list << Merchant.new(row)
+        @merchant_list << Merchant.new(row, engine)
       end
     end
     return @merchant_list

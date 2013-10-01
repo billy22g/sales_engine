@@ -1,6 +1,3 @@
-require "sales_engine"
-require "invoice_repo"
-require "csv"
 
 class Invoice
   attr_reader :id, 
@@ -9,18 +6,19 @@ class Invoice
               :status,                
               :created_at, 
               :updated_at 
+              :engine
 
-  def initialize(attribute = {})
+  def initialize(attribute = {}, engine = SalesEngine.new)
     @id                  = attribute[:id]                                    
     @customer_id         = attribute[:customer_id]                            
     @merchant_id         = attribute[:merchant_id] 
     @status              = attribute[:status]                                   
     @created_at          = attribute[:created_at]    
-    @updated_at          = attribute[:updated_at]    
+    @updated_at          = attribute[:updated_at]
+    @engine              = engine    
   end
 
   def transactions
-    engine = SalesEngine.new
     transactions = engine.transaction_repository.all
     transactions.find_by_all do |transaction|
       transaction.invoice_id == self.id
@@ -28,15 +26,22 @@ class Invoice
   end
 
   def invoice_items
-    engine = SalesEngine.new
     invoice_items = engine.invoice_item_repository.all
     invoice_items.find_by_all do |invoice_item|
-      invoice_item.invoice_id == self.id
+      invoice_item.invoice_id == id
     end
   end
 
+  def items                      
+    items = engine.item_repository.all
+    items.find_by_all do |item|
+      invoice_items.find_by_all do |invoice_item|
+      item.id == invoice_item.item_id
+    end
+    end    
+  end
+
   def customer
-    engine = SalesEngine.new
     customers = engine.customer_repository.all
     customers.find do |customer|
       customer.id == self.customer_id
@@ -45,7 +50,6 @@ class Invoice
   end
 
   def merchant
-    engine = SalesEngine.new
     merchants = engine.merchant_repository.all
     merchants.find do |merchant|
       merchant.id == self.merchant_id

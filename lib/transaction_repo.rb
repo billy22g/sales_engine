@@ -4,10 +4,9 @@ require "pry"
 
 class TransactionRepo
   
-  def initialize(filename = "./data/transactions.csv")
+  def initialize(filename = "./data/transactions.csv", engine = SalesEngine.new)
     @transaction_list = []
     @filename = filename
-    transaction_objects
   end
 
   def read_file

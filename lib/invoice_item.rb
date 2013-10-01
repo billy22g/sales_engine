@@ -1,6 +1,3 @@
-require "sales_engine"
-require "invoice_item_repo"
-require "csv"
 
 class InvoiceItem
 
@@ -11,8 +8,9 @@ class InvoiceItem
               :unit_price, 
               :created_at, 
               :updated_at
+              :engine
 
-  def initialize(attribute = {})
+  def initialize(attribute = {}, engine = SalesEngine.new)
     @id              = attribute[:id]
     @item_id         = attribute[:item_id]
     @invoice_id      = attribute[:invoice_id]
@@ -20,10 +18,10 @@ class InvoiceItem
     @unit_price      = attribute[:unit_price]
     @created_at      = attribute[:created_at]
     @updated_at      = attribute[:updated_at]
+    @engine          = engine
   end
 
   def invoice
-    engine = SalesEngine.new
     invoices = engine.invoice_repository.all
     invoices.find do |invoice|
       invoice.id == self.invoice_id
@@ -32,7 +30,6 @@ class InvoiceItem
   end
 
   def item
-    engine = SalesEngine.new
     items = engine.item_repository.all
     items.find do |item|
       item.id == self.item_id

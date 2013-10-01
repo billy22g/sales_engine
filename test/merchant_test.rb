@@ -8,43 +8,32 @@ require "csv"
 class MerchantTest < Minitest::Test
 
   def contents
-    contents = CSV.read "./data/merchants.csv", headers: true, header_converters: :symbol
-  end
-
-  def merchant_attributes
-    contents.each do |row|
-      id = row[:id]
-      name = row[:name]
-      created_at = row[:created_at]
-      updated_at = row[:updated_at]
-    end
-
+    CSV.read "./data/merchants.csv", headers: true, header_converters: :symbol
   end
 
   def merchant
-    merchant = Merchant.new(merchant_attributes)
+    Merchant.new(contents.first)
   end
 
   def test_merchant_id
-    assert_equal merchant_attributes[:id], merchant.id
+    assert_equal "1", merchant.id
   end
 
   def test_merchant_name
-    assert_equal merchant_attributes[:name], merchant.name
+    assert_equal "Schroeder-Jerde", merchant.name
   end  
 
   def test_merchant_created_at
-    assert_equal merchant_attributes[:created_at], merchant.created_at
+    assert_equal "2012-03-27 14:53:59 UTC", merchant.created_at
   end
 
   def test_merchant_updated_at
-    assert_equal merchant_attributes[:updated_at], merchant.updated_at
+    assert_equal "2012-03-27 14:53:59 UTC", merchant.updated_at
   end
 
   def test_that_a_merchant_can_find_its_items
-    engine = SalesEngine.new
-    items = engine.item_repository.find_all_by_merchant_id("1")
-    assert_equal 5, items.count
+    merchant = Merchant.new(:id => "1")
+    assert_equal 5, merchant.items.count
   end
 
   def test_that_a_merchant_can_find_its_invoices

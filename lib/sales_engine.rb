@@ -22,12 +22,12 @@ class SalesEngine
                 :transaction_repository
 
   def initialize
-    @merchant_repository = MerchantRepo.new
-    @invoice_repository = InvoiceRepo.new 
-    @item_repository = ItemRepo.new
-    @invoice_item_repository = InvoiceItemRepo.new
-    @customer_repository = CustomerRepo.new
-    @transaction_repository = TransactionRepo.new
+    @merchant_repository = MerchantRepo.new(nil, self)
+    @invoice_repository = InvoiceRepo.new(nil, self)
+    @item_repository = ItemRepo.new(nil, self)
+    @invoice_item_repository = InvoiceItemRepo.new(nil, self)
+    @customer_repository = CustomerRepo.new(nil, self)
+    @transaction_repository = TransactionRepo.new(nil, self)
   end
 
 end
