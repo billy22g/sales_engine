@@ -33,12 +33,9 @@ class Invoice
   end
 
   def items                      
-    items = engine.item_repository.all
-    items.select do |item|
-      invoice_items.select do |invoice_item|
-      item.id == invoice_item.item_id
+    invoice_items.collect do |invoice_item|
+      invoice_item.item
     end
-    end    
   end
 
   def customer

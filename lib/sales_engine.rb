@@ -12,7 +12,6 @@ require_relative 'customer_repo'
 require_relative 'transaction'
 require_relative 'transaction_repo'
 
-
 class SalesEngine
   attr_reader   :merchant_repository,
                 :invoice_repository,                
@@ -21,7 +20,7 @@ class SalesEngine
                 :customer_repository,
                 :transaction_repository
 
-  def initialize
+  def initialize(dir = "./data")
     @merchant_repository = MerchantRepo.new(nil, self)
     @invoice_repository = InvoiceRepo.new(nil, self)
     @item_repository = ItemRepo.new(nil, self)
@@ -30,17 +29,8 @@ class SalesEngine
     @transaction_repository = TransactionRepo.new(nil, self)
   end
 
+  def startup
+
+  end
+
 end
-
-
-  
-
-# engine = SalesEngine.new
-# engine.startup
-
-# engine.merchant_repository
-# engine.invoice_repository
-# engine.item_repository
-# engine.invoice_item_repository
-# engine.customer_repository
-# engine.transactions_repository

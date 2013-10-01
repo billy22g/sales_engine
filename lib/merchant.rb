@@ -9,23 +9,23 @@ attr_reader :id,
             
 
   def initialize(attribute = {}, engine = SalesEngine.new)
-    @id = attribute[:id]
-    @name = attribute[:name]
+    @id         = attribute[:id]
+    @name       = attribute[:name]
     @created_at = attribute[:created_at]
     @updated_at = attribute[:updated_at]
-    @engine = engine
+    @engine     = engine
   end
 
   def items
     items = engine.item_repository.all
-    items.find_all do |item|
+    items.select do |item|
       item.merchant_id == id
     end
   end
 
   def invoices
     invoices = engine.invoice_repository.all
-    invoices.find_all do |invoice|
+    invoices.select do |invoice|
       invoice.merchant_id == id
     end
   end

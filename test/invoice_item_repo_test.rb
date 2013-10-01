@@ -4,7 +4,7 @@ require "minitest/pride"
 require "./lib/invoice_item_repo"
 require "csv"
 
-class InvoiceItemRepoTest < Minitest::Test 
+class InvoiceItemRepoTest < Minitest::Test
 
   def repo
     @ii ||= InvoiceItemRepo.new("./data/invoice_items.csv")

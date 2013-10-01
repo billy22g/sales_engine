@@ -1,29 +1,30 @@
-require "csv"
-require "./lib/invoice"
-require "pry"
+
 
 class InvoiceRepo
+
+  attr_reader :engine 
   
   def initialize(filename = "./data/invoices.csv", engine = SalesEngine.new)
     @invoice_list = []
     @filename = filename
+    @engine = engine
   end
 
   def read_file
-    @invoice_data = CSV.read "./data/invoices.csv", headers: true, header_converters: :symbol
+    CSV.read "./data/invoices.csv", headers: true, header_converters: :symbol
   end
 
   def invoice_objects
     if @invoice_list.empty?
       read_file.each do |row|
-        @invoice_list << Invoice.new(row)
+        @invoice_list << Invoice.new(row, engine)
       end
     end
     return @invoice_list
   end
 
   def all
-    invoice_objects
+    @invoice_objects ||= invoice_objects
   end
 
   def filename
@@ -40,7 +41,7 @@ class InvoiceRepo
 
   def find_by(attribute, input)
     invoice_objects.find do |m|
-      m.send(attribute).downcase == input.downcase
+      m.send(attribute).downcase == input.to_s.downcase
     end
   end
 
@@ -70,7 +71,7 @@ class InvoiceRepo
 
   def find_all_by(attribute, input)
     invoice_objects.select do |invoice|
-      invoice.send(attribute).downcase == input.downcase
+      invoice.send(attribute).downcase == input.to_s.downcase
     end
   end
 

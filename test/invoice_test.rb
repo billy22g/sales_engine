@@ -50,7 +50,7 @@ class InvoiceTest < MiniTest::Test
 
   def test_that_invoices_can_return_their_associated_items
     invoice = Invoice.new(:id => "1")
-    assert_equal 5, invoice.items.count
+    assert_equal 4, invoice.items.count
   end
 
   def test_that_customer_method_returns_instance_of_Customer_associated_with_the_invoice

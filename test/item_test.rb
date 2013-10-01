@@ -43,13 +43,12 @@ class ItemsTest < MiniTest::Test
   end
 
   def test_invoice_items_method_returns_associated_invoice_items
-    engine = SalesEngine.new
-    invoice_items = engine.invoice_item_repository.find_all_by_quantity("7")
-    assert_equal 1, invoice_items.count
+    item = Item.new(:id => "1")
+    assert_equal 1, item.invoice_items.count
   end
 
   def test_merchant_method_returns_a_Merchant
-    item = Item.new
+    item = Item.new(:merchant_id => "1")
     assert_kind_of Merchant, item.merchant
   end
 

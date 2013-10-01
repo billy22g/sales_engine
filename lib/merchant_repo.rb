@@ -1,6 +1,3 @@
-require "csv"
-require "./lib/merchant"
-require "pry"
 
 class MerchantRepo
 
@@ -13,7 +10,7 @@ class MerchantRepo
   end
 
   def read_file
-    @merchant_data = CSV.read "./data/merchants.csv", headers: true, header_converters: :symbol
+    CSV.read "./data/merchants.csv", headers: true, header_converters: :symbol
   end
 
   def merchant_objects
@@ -26,7 +23,7 @@ class MerchantRepo
   end
 
   def all
-    merchant_objects
+    @merchant_objects ||= merchant_objects
   end
 
   def filename
@@ -43,7 +40,7 @@ class MerchantRepo
 
   def find_by(attribute, input)
     merchant_objects.find do |m|
-      m.send(attribute).downcase == input.downcase
+      m.send(attribute).downcase == input.to_s.downcase
     end
   end
 
@@ -65,7 +62,7 @@ class MerchantRepo
 
   def find_all_by(attribute, input)
     merchant_objects.select do |merchant|
-      merchant.send(attribute).downcase == input.downcase
+      merchant.send(attribute).downcase == input.to_s.downcase
     end
   end
 

@@ -24,16 +24,14 @@ class InvoiceItem
   def invoice
     invoices = engine.invoice_repository.all
     invoices.find do |invoice|
-      invoice.id == self.invoice_id
-      invoice
+      invoice.id == invoice_id
     end
   end
 
   def item
     items = engine.item_repository.all
     items.find do |item|
-      item.id == self.item_id
-      item
+      item.id == item_id
     end
   end
 

@@ -1,12 +1,13 @@
-require "csv"
-require "./lib/item"
-require "pry"
+
 
 class ItemRepo
+
+  attr_reader :engine 
   
   def initialize(filename = "./data/items.csv", engine = SalesEngine.new)
     @item_list = []
     @filename = filename
+    @engine = engine 
   end
 
   def read_file
@@ -16,14 +17,14 @@ class ItemRepo
   def item_objects
     if @item_list.empty?
       read_file.each do |row|
-        @item_list << Item.new(row)
+        @item_list << Item.new(row, engine)
       end
     end
     return @item_list
   end
 
   def all
-    item_objects
+    @item_objects ||= item_objects
   end
 
   def filename
@@ -40,7 +41,7 @@ class ItemRepo
 
   def find_by(attribute, input)
     item_objects.find do |m|
-      m.send(attribute).downcase == input.downcase
+      m.send(attribute).downcase == input.to_s.downcase
     end
   end
 
@@ -74,7 +75,7 @@ class ItemRepo
 
   def find_all_by(attribute, input)
     item_objects.select do |item|
-      item.send(attribute).downcase == input.downcase
+      item.send(attribute).downcase == input.to_s.downcase
     end
   end
 
