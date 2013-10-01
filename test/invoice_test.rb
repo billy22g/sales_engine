@@ -7,64 +7,50 @@ require "csv"
 
 class InvoiceTest < MiniTest::Test
   def contents
-    contents = CSV.read "./data/invoices.csv", headers: true, header_converters: :symbol
-  end
-
-  def invoice_attributes
-    contents.each do |attribute|
-      id          = attribute[:id]       
-      customer_id = attribute[:customer_id]       
-      merchant_id = attribute[:merchant_id]
-      status      = attribute[:status]
-      created_at  = attribute[:created_at] 
-      updated_at  = attribute[:updated_at] 
-    end
+    CSV.read "./data/invoices.csv", headers: true, header_converters: :symbol
   end
 
   def invoice
-    @invoice ||= Invoice.new(invoice_attributes)
+    Invoice.new(contents.first)
   end
 
   def test_it_gets_item_id
-    assert_equal invoice_attributes[:id], invoice.id
+    assert_equal "1", invoice.id
   end
 
   def test_it_gets_customer_id
-    assert_equal invoice_attributes[:customer_id], invoice.customer_id
+    assert_equal "1", invoice.customer_id
   end
 
   def test_it_gets_unit_price
-    assert_equal invoice_attributes[:status], invoice.status
+    assert_equal "shipped", invoice.status
   end
 
   def test_it_gets_merchant_id
-    assert_equal invoice_attributes[:merchant_id], invoice.merchant_id
+    assert_equal "26", invoice.merchant_id
   end
 
   def test_it_gets_created_at
-    assert_equal invoice_attributes[:created_at], invoice.created_at
+    assert_equal "2012-03-25 09:54:09 UTC", invoice.created_at
   end
 
   def test_it_gets_updated_at
-    assert_equal invoice_attributes[:updated_at], invoice.updated_at
+    assert_equal "2012-03-25 09:54:09 UTC", invoice.updated_at
   end
 
   def test_that_invoices_can_find_their_associated_transactions
-    engine = SalesEngine.new
-    transactions = engine.transaction_repository.find_all_by_invoice_id("6")
-    assert_equal 1, transactions.count
+    invoice = Invoice.new(:id => "1")
+    assert_equal 1, invoice.transactions.count
   end
 
   def test_that_invoices_can_find_their_associated_invoice_items
-    engine = SalesEngine.new
-    invoice_items = engine.invoice_item_repository.find_all_by_item_id("539")
-    assert_equal 2, invoice_items.count
+    invoice = Invoice.new(:id => "1")
+    assert_equal 4, invoice.invoice_items.count
   end
 
   def test_that_invoices_can_return_their_associated_items
-    engine = SalesEngine.new
-    items = engine.item_repository.find_all_by_name("Item Qui Esse")
-    assert_equal 1, items.count
+    invoice = Invoice.new(:id => "1")
+    assert_equal 5, invoice.items.count
   end
 
   def test_that_customer_method_returns_instance_of_Customer_associated_with_the_invoice

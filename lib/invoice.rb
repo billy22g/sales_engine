@@ -5,7 +5,7 @@ class Invoice
               :merchant_id,
               :status,                
               :created_at, 
-              :updated_at 
+              :updated_at,
               :engine
 
   def initialize(attribute = {}, engine = SalesEngine.new)
@@ -20,22 +20,22 @@ class Invoice
 
   def transactions
     transactions = engine.transaction_repository.all
-    transactions.find_by_all do |transaction|
+    transactions.select do |transaction|
       transaction.invoice_id == self.id
     end
   end
 
   def invoice_items
     invoice_items = engine.invoice_item_repository.all
-    invoice_items.find_by_all do |invoice_item|
+    invoice_items.select do |invoice_item|
       invoice_item.invoice_id == id
     end
   end
 
   def items                      
     items = engine.item_repository.all
-    items.find_by_all do |item|
-      invoice_items.find_by_all do |invoice_item|
+    items.select do |item|
+      invoice_items.select do |invoice_item|
       item.id == invoice_item.item_id
     end
     end    
