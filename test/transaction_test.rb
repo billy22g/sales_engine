@@ -2,6 +2,7 @@ require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/transaction'
+require './lib/sales_engine'
 require 'csv'
 
 class TransactionTest < MiniTest::Test  
@@ -10,48 +11,36 @@ class TransactionTest < MiniTest::Test
     CSV.read "./data/transactions.csv", headers: true, header_converters: :symbol
   end 
 
-  def transaction_attributes
-      contents.each do |row|
-        id                          = row[:id],
-        invoice_id                  = row[:invoice_id],
-        credit_card_number          = row[:credit_card_number],
-        credit_card_expiration_date = row[:credit_card_expiration_date],
-        result                      = row[:result],
-        created_at                  = row[:created_at],
-        updated_at                  = row[:updated_at]
-      end
-    end
-
   def transaction
-    transaction ||= Transaction.new(transaction_attributes)
+    Transaction.new(contents.first)
   end
 
   def test_transaction_id
-    assert_equal transaction_attributes[:id], transaction.id
+    assert_equal "1", transaction.id
   end
 
   def test_invoice_id
-    assert_equal transaction_attributes[:invoice_id], transaction.invoice_id
+    assert_equal "1", transaction.invoice_id
   end
 
   def test_credit_card_number
-    assert_equal transaction_attributes[:credit_card_number], transaction.credit_card_number
+    assert_equal "4.65E+15", transaction.credit_card_number
   end
 
   def test_credit_card_expiration_date
-    assert_equal transaction_attributes[:credit_card_expiration_date], transaction.credit_card_expiration_date
+    assert_equal nil, transaction.credit_card_expiration_date
   end
 
   def test_result
-    assert_equal transaction_attributes[:result], transaction.result
+    assert_equal "success", transaction.result
   end
 
   def test_created_at
-    assert_equal transaction_attributes[:created_at], transaction.created_at
+    assert_equal "2012-03-27 14:54:09 UTC", transaction.created_at
   end
 
   def test_updated_at
-    assert_equal transaction_attributes[:updated_at], transaction.updated_at
+    assert_equal "2012-03-27 14:54:09 UTC", transaction.updated_at
   end
 
 end  
