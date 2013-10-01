@@ -11,7 +11,7 @@ class ItemRepo
   end
 
   def read_file
-    @item_data = CSV.read "./data/items.csv", headers: true, header_converters: :symbol
+    CSV.read "./data/items.csv", headers: true, header_converters: :symbol
   end
 
   def item_objects
@@ -41,7 +41,7 @@ class ItemRepo
 
   def find_by(attribute, input)
     item_objects.find do |m|
-      m.send(attribute).downcase == input.to_s.downcase
+      m.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 
@@ -75,7 +75,7 @@ class ItemRepo
 
   def find_all_by(attribute, input)
     item_objects.select do |item|
-      item.send(attribute).downcase == input.to_s.downcase
+      item.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 

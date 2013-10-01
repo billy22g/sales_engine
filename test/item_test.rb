@@ -15,7 +15,7 @@ class ItemsTest < MiniTest::Test
   end
 
   def test_it_gets_item_id
-    assert_equal "1", item.id
+    assert_equal 1, item.id
   end
 
   def test_it_gets_name
@@ -27,11 +27,11 @@ class ItemsTest < MiniTest::Test
   end
 
   def test_it_gets_unit_price
-    assert_equal "75107", item.unit_price
+    assert_equal 75107, item.unit_price
   end
 
   def test_it_gets_merchant_id
-    assert_equal "1", item.merchant_id
+    assert_equal 1, item.merchant_id
   end
 
   def test_it_gets_created_at

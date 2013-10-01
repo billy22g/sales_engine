@@ -9,9 +9,9 @@ class Invoice
               :engine
 
   def initialize(attribute = {}, engine = SalesEngine.new)
-    @id                  = attribute[:id]                                    
-    @customer_id         = attribute[:customer_id]                            
-    @merchant_id         = attribute[:merchant_id] 
+    @id                  = attribute[:id].to_i                                  
+    @customer_id         = attribute[:customer_id].to_i                            
+    @merchant_id         = attribute[:merchant_id].to_i 
     @status              = attribute[:status]                                   
     @created_at          = attribute[:created_at]    
     @updated_at          = attribute[:updated_at]
@@ -21,7 +21,7 @@ class Invoice
   def transactions
     transactions = engine.transaction_repository.all
     transactions.select do |transaction|
-      transaction.invoice_id == self.id
+      transaction.invoice_id == id
     end
   end
 
@@ -41,16 +41,14 @@ class Invoice
   def customer
     customers = engine.customer_repository.all
     customers.find do |customer|
-      customer.id == self.customer_id
-      customer
+      customer.id == customer_id
     end 
   end
 
   def merchant
     merchants = engine.merchant_repository.all
     merchants.find do |merchant|
-      merchant.id == self.merchant_id
-      merchant
+      merchant.id == merchant_id
     end
   end
 

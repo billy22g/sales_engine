@@ -21,13 +21,13 @@ class InvoiceRepoTest < Minitest::Test
 
   def test_that_invoice_objects_method_actually_creates_new_invoice_objects
     invoice = repo.invoice_objects
-    assert_equal "5", invoice.last.id
-    assert_equal "41", invoice.last.merchant_id
+    assert_equal 5, invoice.last.id
+    assert_equal 41, invoice.last.merchant_id
   end
 
   def test_that_it_finds_one_invoice_by_attribute
     invoice = repo.find_by_merchant_id("75")
-    assert_equal "2", invoice.id
+    assert_equal 2, invoice.id
   end
 
   def test_that_it_finds_all_invoice_by_attribute

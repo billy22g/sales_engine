@@ -9,7 +9,7 @@ attr_reader :id,
             
 
   def initialize(attribute = {}, engine = SalesEngine.new)
-    @id         = attribute[:id]
+    @id         = attribute[:id].to_i
     @name       = attribute[:name]
     @created_at = attribute[:created_at]
     @updated_at = attribute[:updated_at]

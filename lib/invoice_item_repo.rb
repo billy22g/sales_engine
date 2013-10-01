@@ -41,7 +41,7 @@ class InvoiceItemRepo
 
   def find_by(attribute, input)
     invoice_items_objects.find do |m|
-      m.send(attribute).downcase == input.to_s.downcase
+      m.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 
@@ -75,7 +75,7 @@ class InvoiceItemRepo
 
   def find_all_by(attribute, input)
     invoice_items_objects.select do |i|
-      i.send(attribute).downcase == input.to_s.downcase
+      i.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 

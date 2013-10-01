@@ -7,7 +7,7 @@ require "csv"
 class ItemRepoTest < Minitest::Test 
 
   def repo
-    @mr ||= ItemRepo.new("./data/items.csv")
+    ItemRepo.new("./data/items.csv")
   end
 
   def test_it_receives_filename_that_will_be_loaded_by_default
@@ -21,13 +21,13 @@ class ItemRepoTest < Minitest::Test
 
   def test_that_item_objects_method_actually_creates_new_item_objects
     item = repo.item_objects
-    assert_equal "5", item.last.id
+    assert_equal 5, item.last.id
     assert_equal "Item Expedita Aliquam", item.last.name
   end
 
   def test_that_it_finds_one_item_by_attribute
     item = repo.find_by_name("Item Autem Minima")
-    assert_equal "2", item.id
+    assert_equal 2, item.id
   end
 
   def test_that_it_finds_all_item_by_attribute

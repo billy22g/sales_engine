@@ -15,11 +15,11 @@ class InvoiceTest < MiniTest::Test
   end
 
   def test_it_gets_item_id
-    assert_equal "1", invoice.id
+    assert_equal 1, invoice.id
   end
 
   def test_it_gets_customer_id
-    assert_equal "1", invoice.customer_id
+    assert_equal 1, invoice.customer_id
   end
 
   def test_it_gets_unit_price
@@ -27,7 +27,7 @@ class InvoiceTest < MiniTest::Test
   end
 
   def test_it_gets_merchant_id
-    assert_equal "26", invoice.merchant_id
+    assert_equal 26, invoice.merchant_id
   end
 
   def test_it_gets_created_at
@@ -54,13 +54,11 @@ class InvoiceTest < MiniTest::Test
   end
 
   def test_that_customer_method_returns_instance_of_Customer_associated_with_the_invoice
-    invoice = Invoice.new
     assert_kind_of Customer, invoice.customer
   end
 
   def test_that_merchant_method_returns_instance_of_Merchant_associated_with_the_invoice
-    invoice = Invoice.new
-    assert_kind_of Merchant, invoice.merchant
+    assert_equal 26, invoice.merchant_id
   end
 
 

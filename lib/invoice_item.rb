@@ -11,11 +11,11 @@ class InvoiceItem
               :engine
 
   def initialize(attribute = {}, engine = SalesEngine.new)
-    @id              = attribute[:id]
-    @item_id         = attribute[:item_id]
-    @invoice_id      = attribute[:invoice_id]
-    @quantity        = attribute[:quantity]
-    @unit_price      = attribute[:unit_price]
+    @id              = attribute[:id].to_i
+    @item_id         = attribute[:item_id].to_i
+    @invoice_id      = attribute[:invoice_id].to_i
+    @quantity        = attribute[:quantity].to_i
+    @unit_price      = attribute[:unit_price].to_i
     @created_at      = attribute[:created_at]
     @updated_at      = attribute[:updated_at]
     @engine          = engine

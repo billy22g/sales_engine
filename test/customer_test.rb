@@ -15,7 +15,7 @@ class CustomerTest < MiniTest::Test
     Customer.new(contents.first)
   end
   def test_customer_id
-    assert_equal "1", customer.id
+    assert_equal 1, customer.id
   end
   def test_customer_first_name
     assert_equal "Joey", customer.first_name
@@ -31,6 +31,6 @@ class CustomerTest < MiniTest::Test
   end
   def test_that_invoice_method_returns_instance_of_Invoice_associated_with_the_customer
     customer = Customer.new
-    assert_kind_of Array, customer.invoice
+    assert_kind_of Array, customer.invoices
   end
 end

@@ -40,7 +40,7 @@ class MerchantRepo
 
   def find_by(attribute, input)
     merchant_objects.find do |m|
-      m.send(attribute).downcase == input.to_s.downcase
+      m.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 
@@ -62,7 +62,7 @@ class MerchantRepo
 
   def find_all_by(attribute, input)
     merchant_objects.select do |merchant|
-      merchant.send(attribute).downcase == input.to_s.downcase
+      merchant.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 

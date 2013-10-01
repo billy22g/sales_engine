@@ -41,7 +41,7 @@ class CustomerRepo
 
   def find_by(attribute, input)
     customer_objects.find do |m|
-      m.send(attribute).downcase == input.to_s.downcase
+      m.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 
@@ -67,7 +67,7 @@ class CustomerRepo
 
   def find_all_by(attribute, input)
     customer_objects.select do |customer|
-      customer.send(attribute).downcase == input.to_s.downcase
+      customer.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 

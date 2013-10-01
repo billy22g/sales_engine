@@ -41,7 +41,7 @@ class TransactionRepo
 
   def find_by(attribute, input)
     transaction_objects.find do |m|
-      m.send(attribute).downcase == input.to_s.downcase
+      m.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 
@@ -75,7 +75,7 @@ class TransactionRepo
 
   def find_all_by(attribute, input)
     transaction_objects.select do |transaction|
-      transaction.send(attribute).downcase == input.to_s.downcase
+      transaction.send(attribute).to_s.downcase == input.to_s.downcase
     end
   end
 

@@ -22,13 +22,13 @@ class CustomerRepoTest < Minitest::Test
 
   def test_that_customer_objects_method_actually_creates_new_customer_objects
     customer = repo.customer_objects
-    assert_equal "1", customer.first.id
-    assert_equal "5", customer.last.id
+    assert_equal 1, customer.first.id
+    assert_equal 5, customer.last.id
   end
 
   def test_that_it_finds_one_customer_by_attribute
     customer = repo.find_by_first_name("Cecelia")
-    assert_equal "2", customer.id
+    assert_equal 2, customer.id
   end
 
   def test_that_it_finds_all_customer_by_attribute

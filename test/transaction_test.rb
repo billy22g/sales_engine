@@ -16,11 +16,11 @@ class TransactionTest < MiniTest::Test
   end
 
   def test_transaction_id
-    assert_equal "1", transaction.id
+    assert_equal 1, transaction.id
   end
 
   def test_invoice_id
-    assert_equal "1", transaction.invoice_id
+    assert_equal 1, transaction.invoice_id
   end
 
   def test_credit_card_number
@@ -43,7 +43,11 @@ class TransactionTest < MiniTest::Test
     assert_equal "2012-03-27 14:54:09 UTC", transaction.updated_at
   end
 
-  
+  def test_that_invoice_method_returns_an_instance_of_Invoice_associated_with_transaction
+    transaction = Transaction.new(:invoice_id => "1")
+    assert_kind_of Array, transaction.invoice
+
+  end
 
 end  
 

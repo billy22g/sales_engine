@@ -17,23 +17,23 @@ class InvoiceItemTest < MiniTest::Test
   end
 
   def test_invoice_items_id
-    assert_equal "1", invoice_item.id
+    assert_equal 1, invoice_item.id
   end
 
   def test_item_id
-    assert_equal "1", invoice_item.item_id
+    assert_equal 1, invoice_item.item_id
   end
 
   def test_invoice_id
-    assert_equal "1", invoice_item.invoice_id
+    assert_equal 1, invoice_item.invoice_id
   end
 
   def test_quantity
-    assert_equal "5", invoice_item.quantity
+    assert_equal 5, invoice_item.quantity
   end
 
   def test_unit_price
-    assert_equal "13635", invoice_item.unit_price
+    assert_equal 13635, invoice_item.unit_price
   end
 
   def test_created_at
@@ -45,13 +45,13 @@ class InvoiceItemTest < MiniTest::Test
   end
 
   def test_that_invoice_method_returns_an_instance_of_Invoice
-    # invoice_item = InvoiceItem.new(:invoice_id => "1")
+    invoice_item = InvoiceItem.new(:invoice_id => "1")
     assert_kind_of Invoice, invoice_item.invoice
   end
 
   def test_that_item_method_returns_an_instance_of_Item
-    # invoice_item = InvoiceItem.new(:item_id => "1")
     assert_kind_of Item, invoice_item.item
+    assert_equal 1, invoice_item.item_id
   end
   
 end
