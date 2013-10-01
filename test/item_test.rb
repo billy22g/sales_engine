@@ -19,15 +19,15 @@ class ItemsTest < MiniTest::Test
   end
 
   def test_it_gets_name
-    assert_equal "1", item.name
+    assert_equal "Item Qui Esse", item.name
   end
 
   def test_it_gets_description
-    assert_equal "1", item.description
+    assert_equal "Nihil autem sit ", item.description
   end
 
   def test_it_gets_unit_price
-    assert_equal "1", item.unit_price
+    assert_equal "75107", item.unit_price
   end
 
   def test_it_gets_merchant_id
@@ -35,11 +35,11 @@ class ItemsTest < MiniTest::Test
   end
 
   def test_it_gets_created_at
-    assert_equal "1", item.created_at
+    assert_equal "2012-03-27 14:53:59 UTC", item.created_at
   end
 
   def test_it_gets_updated_at
-    assert_equal "1", item.updated_at
+    assert_equal "2012-03-27 14:53:59 UTC", item.updated_at
   end
 
   def test_invoice_items_method_returns_associated_invoice_items

@@ -4,7 +4,7 @@ class Customer
               :first_name,
               :last_name,
               :created_at,
-              :updated_at
+              :updated_at,
               :engine
 
   def initialize(attribute = {}, engine = SalesEngine.new)
@@ -16,4 +16,11 @@ class Customer
     @engine      = engine
   end
 
+  def invoice
+    invoices = engine.invoice_repository.all
+    invoices.select do |invoice|
+      invoice.customer_id == id
+      invoice
+    end
+  end
 end

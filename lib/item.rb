@@ -6,7 +6,7 @@ class Item
               :unit_price, 
               :merchant_id,                
               :created_at, 
-              :updated_at   
+              :updated_at,   
               :engine
 
   def initialize(attribute = {}, engine = SalesEngine.new)
@@ -23,15 +23,15 @@ class Item
   def invoice_items
     invoice_items = engine.invoice_item_repository.all
     invoice_items.find_by_all do |invoice_item|
-      invoice_item.item_id == self.id
+      invoice_item.item_id == id
     end
   end
 
   def merchant
     merchants = engine.merchant_repository.all
     merchants.find do |merchant|
-      merchant.id == self.merchant_id
-      merchant
+      merchant.id == merchant_id
+      merchant 
     end
   end
 

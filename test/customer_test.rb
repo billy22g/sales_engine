@@ -2,42 +2,35 @@ require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/customer.rb'
+require './lib/sales_engine'
 require 'csv'
 
 class CustomerTest < MiniTest::Test 
-  # id,first_name,last_name,created_at,updated_at
 
   def contents
-    contents = CSV.read './data/customers.csv', headers: true, header_converters: :symbol
-  end
-  
-  def customer_attributes
-    
-    contents.each do |row|
-      id = row[:id]
-      first_name  = row[:first_name]
-      last_name   = row[:last_name]
-      created_at  = row[:created_at]
-      updated_at  = row[:updated_at]
-    end
+    CSV.read './data/customers.csv', headers: true, header_converters: :symbol
   end
 
   def customer
-    @customer = Customer.new(customer_attributes)
+    Customer.new(contents.first)
   end
   def test_customer_id
-    assert_equal customer_attributes[:id], customer.id
+    assert_equal "1", customer.id
   end
   def test_customer_first_name
-    assert_equal customer_attributes[:first_name], customer.first_name
+    assert_equal "Joey", customer.first_name
   end
   def test_customer_last_name
-    assert_equal customer_attributes[:last_name], customer.last_name
+    assert_equal "Ondricka", customer.last_name
   end
   def test_created_at
-    assert_equal customer_attributes[:created_at], customer.created_at
+    assert_equal "2012-03-27 14:54:09 UTC", customer.created_at
   end
   def test_updated_at
-    assert_equal customer_attributes[:updated_at], customer.updated_at
+    assert_equal "2012-03-27 14:54:09 UTC", customer.updated_at
+  end
+  def test_that_invoice_method_returns_instance_of_Invoice_associated_with_the_customer
+    customer = Customer.new
+    assert_kind_of Array, customer.invoice
   end
 end
