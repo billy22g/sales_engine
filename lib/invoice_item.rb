@@ -7,7 +7,7 @@ class InvoiceItem
               :quantity, 
               :unit_price, 
               :created_at, 
-              :updated_at
+              :updated_at,
               :engine
 
   def initialize(attribute = {}, engine = SalesEngine.new)
