@@ -16,4 +16,11 @@ class Customer
     @engine      = engine
   end
 
+  def invoice
+    invoices = engine.invoice_repository.all
+    invoices.select do |invoice|
+      invoice.customer_id == id
+      invoice
+    end
+  end
 end
