@@ -22,10 +22,7 @@ attr_reader   :id,
   end
 
   def invoice
-    invoices = engine.invoice_repository.all
-    invoices.select do |invoice|
-      invoice.id == invoice_id
-    end
+    engine.invoice_repository.find_all_by_id(invoice_id)
   end
   
 end

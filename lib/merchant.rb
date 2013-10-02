@@ -17,17 +17,11 @@ attr_reader :id,
   end
 
   def items
-    items = engine.item_repository.all
-    items.select do |item|
-      item.merchant_id == id
-    end
+    engine.item_repository.find_all_by_merchant_id(id)
   end
 
   def invoices
-    invoices = engine.invoice_repository.all
-    invoices.select do |invoice|
-      invoice.merchant_id == id
-    end
+    engine.invoice_repository.find_all_by_merchant_id(id)
   end
 
   def revenue

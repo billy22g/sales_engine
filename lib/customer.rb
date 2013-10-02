@@ -17,10 +17,7 @@ class Customer
   end
 
   def invoices
-    invoices = engine.invoice_repository.all
-    invoices.select do |invoice|
-      invoice.customer_id == id
-    end
+    engine.invoice_repository.find_all_by_customer_id(id)
   end
 
 end

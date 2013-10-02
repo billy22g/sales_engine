@@ -21,17 +21,11 @@ class Item
   end
 
   def invoice_items
-    invoice_items = engine.invoice_item_repository.all
-    invoice_items.select do |invoice_item|
-      invoice_item.item_id == id
-    end
+    engine.invoice_item_repository.find_all_by_item_id(id)
   end
 
   def merchant
-    merchants = engine.merchant_repository.all
-    merchants.find do |merchant|
-      merchant.id == merchant_id
-    end
+    engine.merchant_repository.find_by_id(merchant_id)
   end
 
 end
