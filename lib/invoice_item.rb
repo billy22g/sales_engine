@@ -22,17 +22,11 @@ class InvoiceItem
   end
 
   def invoice
-    invoices = engine.invoice_repository.all
-    invoices.find do |invoice|
-      invoice.id == invoice_id
-    end
+    engine.invoice_repository.find_by_id(invoice_id)
   end
 
   def item
-    items = engine.item_repository.all
-    items.find do |item|
-      item.id == item_id
-    end
+    engine.item_repository.find_by_id(item_id)
   end
 
   def total
