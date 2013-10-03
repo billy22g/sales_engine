@@ -1,4 +1,4 @@
-
+require 'pry'
 class Invoice
   attr_reader :id, 
               :customer_id, 
@@ -29,9 +29,10 @@ class Invoice
     transactions.result == "success" 
   end
 
-  def successful_invoices
-    if successful? == true
-      si = [] << Invoice
+  def successful_transactions
+    all_successful_transactions = engine.transaction_repository.find_all_by_result("success")
+    all_successful_transactions.select do |successful_trans|
+      successful_trans.invoice_id == id
     end
   end
 

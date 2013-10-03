@@ -5,7 +5,7 @@ class InvoiceRepo
   attr_reader :engine 
   
   def initialize(filename = "./data/invoices.csv", engine = SalesEngine.new)
-    @invoice_list = []
+
     @filename = filename
     @engine = engine
   end

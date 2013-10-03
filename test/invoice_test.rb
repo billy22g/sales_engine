@@ -40,7 +40,7 @@ class InvoiceTest < MiniTest::Test
 
   def test_that_invoices_can_find_their_associated_transactions
     invoice = Invoice.new(:id => "1")
-    assert_equal 1, invoice.transactions.count
+    assert_equal 4, invoice.transactions.count
   end
 
   def test_that_invoices_can_find_their_associated_invoice_items
@@ -63,6 +63,11 @@ class InvoiceTest < MiniTest::Test
 
   def test_for_total_of_an_invoice
     assert_equal 563663, invoice.total
+  end
+
+  def test_for_successful_transactions_by_invoice_id
+    invoice = Invoice.new(:id => 1)
+    assert_equal 4, invoice.successful_transactions.count
   end
 
 end

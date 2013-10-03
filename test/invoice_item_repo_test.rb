@@ -7,7 +7,7 @@ require "csv"
 class InvoiceItemRepoTest < Minitest::Test
 
   def repo
-    @ii ||= InvoiceItemRepo.new("./data/invoice_items.csv")
+    InvoiceItemRepo.new("./data/invoice_items.csv")
   end
 
   def test_it_receives_filename_that_will_be_loaded_by_default
